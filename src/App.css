@@ -1,0 +1,43 @@
+.dnp-btn {
+    font-size: 18px;
+    background-color: #e6af09;
+    border-radius: 0;
+    color: white;
+    box-shadow: 4px 4px 11px -6px rgba(0, 0, 0, 0.75);
+}
+.dnp-header {
+    position: fixed;
+    text-align: center;
+    background-color: white;
+    margin: 0;
+    padding: 20px 0 20px;
+    top: 0;
+    left: 0;
+    height: 100px;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 13px -6px rgba(0, 0, 0, 0.75);
+    border-bottom: 1px solid gainsboro;
+    align-items: center;
+}
+
+.dnp-header__text {
+    margin: 0;
+    font-weight: lighter;
+}
+
+.intro-container {
+    width: 100%;
+    margin-top: 100px;
+    height: calc(100% - 100px);
+    padding: 20px 0 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.menu-container {
+    width: 100%;
+}

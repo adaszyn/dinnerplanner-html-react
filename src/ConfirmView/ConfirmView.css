@@ -1,0 +1,112 @@
+
+/* CONFIRM VIEW */
+
+.confirm-container {
+    padding-bottom: 20px;
+    margin: 100px auto 0;
+    justify-content: center;
+    background-color: #fbfbfb;
+}
+
+.confirm-header {
+    background-color: white;
+    width: 100%;
+    box-shadow: 0px 6px 7px -7px rgba(0, 0, 0, 0.75);
+}
+
+.confirmation-footer {
+    background-color: white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    box-shadow: 0px -6px 7px -7px rgba(0, 0, 0, 0.75);
+}
+
+.cart-summary {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.cart-summary__items {
+    display: flex;
+    padding: 30px;
+    flex-grow: 8;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.cart-summary__item {
+    width: 200px;
+    height: 200px;
+}
+
+.cart-summary__sidebar {
+    flex-grow: 3;
+    min-width: 200px;
+}
+
+.cart-summary__price-container {
+    box-shadow: -6px 0px 7px -7px rgba(0, 0, 0, 0.75);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.cart-summary-item-container {
+    margin: 10px;
+    text-decoration: none;
+}
+.cart-summary-item-container__border {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: flex-end;
+    box-shadow: 4px 4px 11px -6px rgba(0, 0, 0, 0.75);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.cart-summary-item-price {
+    margin-top: 3px;
+    float: right;
+}
+
+.cart-summary__item-image {
+    width: 200px;
+    height: 200px;
+}
+
+.confirmation-header {
+    padding: 10px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.confirmation-header-text {
+    margin: 10px 0;
+    font-weight: 300;
+}
+
+.confirm-view-item___image {
+    width: 200px;
+    padding: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.cart-summary-item-container__label {
+    font-size: 15px;
+    width: 100%;
+    background-color: white;
+    padding: 10px 2px;
+    margin: 0;
+    text-align: center;
+}
+.cart-summary__price-value {
+    color: #614e14;
+    font-size: 19px;
+    font-weight: bold;
+}

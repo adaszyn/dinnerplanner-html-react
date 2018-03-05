@@ -1,0 +1,73 @@
+.sidebar {
+    width: 300px;
+    height: 100%;
+    top: 100px;
+    left: 0;
+    position: fixed;
+    z-index: 10;
+    box-shadow: 3px 0px 10px -6px rgba(0, 0, 0, 0.75);
+}
+.sidebar-header {
+    padding: 10px;
+    font-size: 19px;
+    font-weight: bold;
+}
+.sidebar-dropdown {
+    padding: 2px 10px 5px;
+}
+.sidebar-dropdown__select {
+    margin-left: 20px;
+}
+.selected-dishes-table > thead {
+    background-color: #eeeeee;
+    border: none;
+}
+.main-view-container {
+    background-color: #fbfbfb;
+    position: absolute;
+    display: flex;
+    left: 300px;
+    top: 100px;
+    height: calc(100% - 100px);
+    width: calc(100% - 300px);
+    overflow-y: scroll;
+}
+
+#menu-toggle-button {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    display: block;
+}
+
+.menu-item__image {
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    display: flex;
+    margin: 10px;
+    align-items: flex-end;
+    box-shadow: 4px 4px 11px -6px rgba(0, 0, 0, 0.75);
+}
+
+.menu-item__label {
+    font-size: 15px;
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    padding: 10px 2px;
+    margin: 0;
+}
+
+#print-btn___container {
+}
+
+#search-view {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#search-view___input {
+    margin: 0px 20px 0px 0px;
+}

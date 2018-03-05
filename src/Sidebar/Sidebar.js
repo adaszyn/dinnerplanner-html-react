@@ -30,23 +30,44 @@ class Sidebar extends Component {
     this.setState({
       numberOfGuests: this.props.model.getNumberOfGuests()
     })
-  }
-
-  // our handler for the input's on change event
-  onNumberOfGuestsChanged = (e) => {
-    this.props.model.setNumberOfGuests(+e.target.value)
-  }
+  }N
 
   render() {
     return (
-      <div className="Sidebar">
-        <h3>This is the sidebar</h3>
-        <p>
-        People: <input value={this.state.numberOfGuests} onChange={this.onNumberOfGuestsChanged}/>
-        <br/>
-        Total number of guests: {this.state.numberOfGuests}
-        </p>
-      </div>
+        <div id="sidebarView" className="sidebar">
+            <h3 className="sidebar-header"> My Dinner </h3>
+
+            <div className="margin-left-10 margin-bottom-10 margin-top-10">
+                <div className="sidebar-dropdown">
+                    People
+                    <select className="sidebar-dropdown__select" id="num-of-guests___select">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+            </div>
+            <table className="table selected-dishes-table table-striped">
+                <tbody>
+                <thead>
+                <tr>
+                    <th>Dish Name </th>
+                    <th> Cost </th>
+                </tr>
+                </thead>
+                </tbody>
+            </table>
+            <div id="sidebar-total-price">
+                0 SEK
+            </div>
+            <div className="col-md-3 col-xs-2"> </div>
+            <a href="#confirm" id="confirm-dinner-btn___a" className="col-md-6 col-xs-8">
+                <button type="button" id="confirm-dinner-btn" className="dnp-btn btn btn-secondary">Confirm dinner</button>
+            </a>
+            <div className="col-md-3 col-xs-2"> </div>
+        </div>
     );
   }
 }

@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './App.css';
 import { Route } from 'react-router-dom';
 import Welcome from './Welcome/Welcome';
 import { modelInstance } from './data/DinnerModel'
 import SelectDish from "./SelectDish/SelectDish";
+import Sidebar from "./Sidebar/Sidebar";
 
 class App extends Component {
   constructor(props) {
@@ -15,16 +16,14 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">{this.state.title}</h1>
-          
-          {/* We rended diffrent component based on the path */}
+        <Fragment>
+        <div class="page-header dnp-header">
+            <h1 class="dnp-header__text">Dinner planner</h1>
+        </div>
           <Route exact path="/" component={Welcome}/>
+            <Route path="/planner" render={() => <Sidebar model={modelInstance}/>}/>
           <Route path="/search" render={() => <SelectDish model={modelInstance}/>}/>
-        
-        </header>
-      </div>
+        </Fragment>
     );
   }
 }
