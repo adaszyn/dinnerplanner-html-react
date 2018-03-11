@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { ObserverComponent } from '../Observer/Observer';
 import './Sidebar.css';
-class Sidebar extends Component {
+class Sidebar extends ObserverComponent {
 
   constructor(props) {
     super(props)
@@ -11,26 +12,11 @@ class Sidebar extends Component {
     }
   }
 
-  // this methods is called by React lifecycle when the 
-  // component is actually shown to the user (mounted to DOM)
-  // that's a good place to setup model observer
-  componentDidMount() {
-    this.props.model.addObserver(this)
-  }
-
-  // this is called when component is removed from the DOM
-  // good place to remove observer
-  componentWillUnmount() {
-    this.props.model.removeObserver(this)
-  }
-
-  // in our update function we modify the state which will
-  // cause the component to re-render
   update() {
     this.setState({
       numberOfGuests: this.props.model.getNumberOfGuests()
     })
-  }N
+  }
 
   render() {
     return (

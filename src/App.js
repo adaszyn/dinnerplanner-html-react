@@ -17,12 +17,14 @@ class App extends Component {
   render() {
     return (
         <Fragment>
-        <div class="page-header dnp-header">
-            <h1 class="dnp-header__text">Dinner planner</h1>
-        </div>
-          <Route exact path="/" component={Welcome}/>
+            <div className="page-header dnp-header">
+                <h1 className="dnp-header__text">Dinner planner</h1>
+            </div>
+            <Route exact path="/" component={Welcome}/>
             <Route path="/planner" render={() => <Sidebar model={modelInstance}/>}/>
-          <Route path="/search" render={() => <SelectDish model={modelInstance}/>}/>
+            <div className="main-view-container">
+                <Route path="/planner" render={() => <SelectDish model={modelInstance}/>}/>
+            </div>
         </Fragment>
     );
   }
