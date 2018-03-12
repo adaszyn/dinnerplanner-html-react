@@ -40,6 +40,7 @@ class SelectDish extends ObserverComponent {
   }
   render() {
     return (
+    <div className="main-view-container">      
       <div id="plannerView">
         <div id="menuView" className="menu-container">
           <SearchBar onSubmit={this.onSubmit} />
@@ -49,6 +50,7 @@ class SelectDish extends ObserverComponent {
             {this.state.status === FAILED && <ErrorModal />}
           </div>
         </div>
+      </div>
       </div>
     );
   }

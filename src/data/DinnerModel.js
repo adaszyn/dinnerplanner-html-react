@@ -18,12 +18,15 @@ const DinnerModel = function() {
     data: [],
     status: DATA_STATUS.FINISHED
   };
+  const dishes = {
+  
+  };
 
   this.getSearchResults = () => searchResults;
   this.setSearchResults = (data, status) => {
     searchResults.data = data;
     searchResults.status = status;
-    notifyObservers();    
+    notifyObservers();
   };
 
   this.setNumberOfGuests = function(num) {
@@ -33,8 +36,25 @@ const DinnerModel = function() {
 
   this.getNumberOfGuests = function() {
     return numberOfGuests;
-    
   };
+  // this.doesDishExistInMenu = function(id) {
+  //   if (typeof menu[id] !== "undefined") return true;
+  //   return false;
+  // };
+  this.setDishData = (id, data, status) => {
+    if (!(id in dishes)) {
+      dishes[id] = {
+        data,
+        status,
+      }
+    } else {
+      dishes[id].data = data;
+      dishes[id].status = status;
+    }
+  }
+  this.getDishData = (id) => {
+    return dishes[id] || { data: {}, status: DATA_STATUS.FINISHED }
+  }
 
   // API Calls
 
@@ -45,6 +65,17 @@ const DinnerModel = function() {
       .then(processResponse)
       .catch(handleError);
   };
+  this.getDish = function(id) {
+    this.setDishData(id, {}, DATA_STATUS.LOADING);    
+    return api(`recipes/${id}/information`)
+      .then(({ data }) => {
+        this.setDishData(id, data, DATA_STATUS.FINISHED);
+      })
+      .catch(error => {
+        console.error(error);
+        this.setDishData(id, {}, DATA_STATUS.FAILED);
+      });
+  };
 
   this.searchDishes = (query, type) => {
     this.setSearchResults([], DATA_STATUS.LOADING);
@@ -52,13 +83,13 @@ const DinnerModel = function() {
       query,
       type
     })
-    .then(({data}) => {
-        this.setSearchResults(data.results, DATA_STATUS.FINISHED);        
-    })
-    .catch(error => {
+      .then(({ data }) => {
+        this.setSearchResults(data.results, DATA_STATUS.FINISHED);
+      })
+      .catch(error => {
         console.error(error);
-        this.setSearchResults([], DATA_STATUS.FAILED);                
-    })
+        this.setSearchResults([], DATA_STATUS.FAILED);
+      });
   };
 
   // API Helper methods

@@ -5,6 +5,8 @@ import Welcome from './Welcome/Welcome';
 import { modelInstance } from './data/DinnerModel'
 import SelectDish from "./SelectDish/SelectDish";
 import Sidebar from "./Sidebar/Sidebar";
+import DishDetails from "./DishDetails/DishDetails";
+
 
 class App extends Component {
   constructor(props) {
@@ -22,9 +24,8 @@ class App extends Component {
             </div>
             <Route exact path="/" component={Welcome}/>
             <Route path="/planner" render={() => <Sidebar model={modelInstance}/>}/>
-            <div className="main-view-container">
-                <Route path="/planner" render={() => <SelectDish model={modelInstance}/>}/>
-            </div>
+            <Route path="/planner" render={() => <SelectDish model={modelInstance}/>}/>
+            <Route path="/planner" render={() => <DishDetails model={modelInstance}/>}/>
         </Fragment>
     );
   }
