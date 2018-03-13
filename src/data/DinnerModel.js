@@ -21,6 +21,7 @@ const DinnerModel = function() {
   const dishes = {
   
   };
+  const menu = [];
 
   this.getSearchResults = () => searchResults;
   this.setSearchResults = (data, status) => {
@@ -28,7 +29,10 @@ const DinnerModel = function() {
     searchResults.status = status;
     notifyObservers();
   };
-
+  this.addDishToMenu = (item) => {
+    menu[item.id] = item;
+    notifyObservers()
+  }
   this.setNumberOfGuests = function(num) {
     numberOfGuests = num;
     notifyObservers();
@@ -37,10 +41,10 @@ const DinnerModel = function() {
   this.getNumberOfGuests = function() {
     return numberOfGuests;
   };
-  // this.doesDishExistInMenu = function(id) {
-  //   if (typeof menu[id] !== "undefined") return true;
-  //   return false;
-  // };
+  this.doesDishExistInMenu = function(id) {
+    if (typeof menu[id] !== "undefined") return true;
+    return false;
+  };
   this.setDishData = (id, data, status) => {
     if (!(id in dishes)) {
       dishes[id] = {

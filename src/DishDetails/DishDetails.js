@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ObserverComponent } from "../Observer/Observer";
-import {DATA_STATUS} from '../data/DinnerModel';
-import { Loader } from '../Loader';
+import { DATA_STATUS } from "../data/DinnerModel";
+import { Loader } from "../Loader";
 import "./DishDetails.css";
 
 const getDishIdFromProps = props => props.match.params.id;
@@ -17,7 +17,9 @@ export class DishDetails extends ObserverComponent {
       menuItem: props.model.getDishData(getDishIdFromProps(props)).data,
       status: props.model.getDishData(getDishIdFromProps(props)).status,
       numberOfGuests: props.model.getNumberOfGuests(),
-      doesDishExistInMenu: props.model.getNumberOfGuests()
+      doesDishExistInMenu: props.model.doesDishExistInMenu(
+        getDishIdFromProps(props)
+      )
     };
   }
   update() {
@@ -34,6 +36,9 @@ export class DishDetails extends ObserverComponent {
       </tr>
     );
   };
+  handleAddToCarClick = () => {
+    this.props.model.addDishToMenu(this.state.menuItem);
+  };
   componentDidMount() {
     super.componentDidMount();
     this.props.model.getDish(getDishIdFromProps(this.props));
@@ -41,7 +46,7 @@ export class DishDetails extends ObserverComponent {
   renderIngredients() {
     const totalPrice = 1000;
     if (!this.state.menuItem.extendedIngredients) {
-      return <Loader />
+      return <Loader />;
     }
     this.state.menuItem.extendedIngredients.map(ingredient =>
       this.renderIngredientsRow(ingredient)
@@ -62,6 +67,7 @@ export class DishDetails extends ObserverComponent {
             <td>
               <a href="#planner">
                 <button
+                  onClick={this.handleAddToCarClick}
                   type="button"
                   className="ingredients-table__button btn btn-secondary btn-md"
                   disabled={this.state.doesDishExistInMenu}
@@ -81,8 +87,8 @@ export class DishDetails extends ObserverComponent {
   render() {
     const { menuItem, numberOfGuests, doesDishExistInMenu } = this.state;
     if (this.state.status === DATA_STATUS.LOADING) {
-        return <Loader />
-    } 
+      return <Loader />;
+    }
     return (
       <div className="main-view-container">
         <div id="dishView" className="dish-container">
