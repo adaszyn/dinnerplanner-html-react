@@ -30,7 +30,7 @@ class SelectDish extends ObserverComponent {
     });
   }
   renderDish = (item) => {
-      return <Link key={`dish-item-${item.id}`} to="/dish" params={{id: item.id}} className="menu-item-container">
+      return <Link key={`dish-item-${item.id}`} to={`/dish/${item.id}`} className="menu-item-container">
       <div className="menu-item">
         <div className="menu-item__image" style={{backgroundImage: `url(${item.image})`}}>
             <h3 className="menu-item__label">{item.title}</h3>

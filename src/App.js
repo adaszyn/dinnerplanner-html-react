@@ -17,15 +17,16 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
         <Fragment>
             <div className="page-header dnp-header">
                 <h1 className="dnp-header__text">Dinner planner</h1>
             </div>
             <Route exact path="/" component={Welcome}/>
-            <Route path="/planner" render={() => <Sidebar model={modelInstance}/>}/>
-            <Route path="/planner" render={() => <SelectDish model={modelInstance}/>}/>
-            <Route path="/planner" render={() => <DishDetails model={modelInstance}/>}/>
+            <Route path="/(planner|dish)" render={() => <Sidebar model={modelInstance}/>}/>
+            <Route path="/planner" render={(props) => <SelectDish {...props} model={modelInstance}/>}/>
+            <Route path="/dish/:id" render={(props) => <DishDetails {...props} model={modelInstance}/>}/>
         </Fragment>
     );
   }

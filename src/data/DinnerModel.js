@@ -51,6 +51,7 @@ const DinnerModel = function() {
       dishes[id].data = data;
       dishes[id].status = status;
     }
+    notifyObservers();
   }
   this.getDishData = (id) => {
     return dishes[id] || { data: {}, status: DATA_STATUS.FINISHED }
