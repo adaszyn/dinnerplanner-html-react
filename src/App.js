@@ -6,6 +6,7 @@ import { modelInstance } from './data/DinnerModel'
 import SelectDish from "./SelectDish/SelectDish";
 import Sidebar from "./Sidebar/Sidebar";
 import DishDetails from "./DishDetails/DishDetails";
+import ConfirmView from "./ConfirmView/ConfirmView";
 
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
             <Route path="/(planner|dish)" render={() => <Sidebar model={modelInstance}/>}/>
             <Route path="/planner" render={(props) => <SelectDish {...props} model={modelInstance}/>}/>
             <Route path="/dish/:id" render={(props) => <DishDetails {...props} model={modelInstance}/>}/>
+            <Route path="/confirm" render={() => <ConfirmView  model={modelInstance}/>}/>
         </Fragment>
     );
   }

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ObserverComponent } from "../Observer/Observer";
 import "./Sidebar.css";
 import { formatPrice } from "../util/number";
@@ -63,8 +64,8 @@ class Sidebar extends ObserverComponent {
           {formatPrice(this.state.totalPrice)} SEK
         </div>
         <div className="col-md-3 col-xs-2"> </div>
-        <a
-          href="#confirm"
+        <Link
+          to="/confirm"
           id="confirm-dinner-btn___a"
           className="col-md-6 col-xs-8"
         >
@@ -75,7 +76,7 @@ class Sidebar extends ObserverComponent {
           >
             Confirm dinner
           </button>
-        </a>
+        </Link>
         <div className="col-md-3 col-xs-2"> </div>
       </div>
     );

@@ -62,7 +62,7 @@ export class DishDetails extends ObserverComponent {
           )}
           <tr>
             <td>
-              <a href="#planner">
+              <Link to="/planner">
                 <button
                   onClick={this.handleAddToCarClick}
                   type="button"
@@ -72,7 +72,7 @@ export class DishDetails extends ObserverComponent {
                 >
                   {buttonText}
                 </button>
-              </a>
+              </Link>
             </td>
             <td />
             <td>SEK {this.state.menuItem.pricePerServing}</td>
