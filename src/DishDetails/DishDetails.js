@@ -26,9 +26,8 @@ export class DishDetails extends ObserverComponent {
     this.setState(this.getDerivedStateFromProps());
   }
   renderIngredientsRow = ingredient => {
-    var quantity = ingredient.quantity * this.state.numberOfGuests;
     return (
-      <tr>
+      <tr key={`ingredient-row-${ingredient.name}`}>
         <td>
           {ingredient.amount} {ingredient.unit}
         </td>
@@ -44,7 +43,6 @@ export class DishDetails extends ObserverComponent {
     this.props.model.getDish(getDishIdFromProps(this.props));
   }
   renderIngredients() {
-    const totalPrice = 1000;
     if (!this.state.menuItem.extendedIngredients) {
       return <Loader />;
     }
@@ -52,7 +50,6 @@ export class DishDetails extends ObserverComponent {
       this.renderIngredientsRow(ingredient)
     );
 
-    var disabled = this.state.doesDishExistInMenu ? "disabled" : "";
     var buttonText = this.state.doesDishExistInMenu
       ? "Already Added"
       : "Add To Cart";
@@ -85,7 +82,7 @@ export class DishDetails extends ObserverComponent {
     );
   }
   render() {
-    const { menuItem, numberOfGuests, doesDishExistInMenu } = this.state;
+    const { menuItem, numberOfGuests } = this.state;
     if (this.state.status === DATA_STATUS.LOADING) {
       return <Loader />;
     }
@@ -94,7 +91,7 @@ export class DishDetails extends ObserverComponent {
         <div id="dishView" className="dish-container">
           <div className="col-md-6 col-xs-12">
             <h1>{menuItem.title}</h1>
-            <img className="dish-preview-img" src={menuItem.image} />
+            <img alt={`dish-${menuItem.name}`} className="dish-preview-img" src={menuItem.image} />
 
             <Link to="/planner">
               <button

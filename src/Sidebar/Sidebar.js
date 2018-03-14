@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { ObserverComponent } from "../Observer/Observer";
 import "./Sidebar.css";
 import { formatPrice } from "../util/number";
@@ -26,7 +26,7 @@ class Sidebar extends ObserverComponent {
     );
   }
   onGuestsNumberChange = ({ target: { value } }) => {
-    this.model.setNumberOfGuests(parseInt(value));
+    this.model.setNumberOfGuests(parseInt(value, 10));
   };
 
   render() {
@@ -51,17 +51,17 @@ class Sidebar extends ObserverComponent {
           </div>
         </div>
         <table className="table selected-dishes-table table-striped">
-          <tbody>
-            <thead>
-              <tr>
-                <th>Dish Name </th>
-                <th> Cost </th>
-              </tr>
-            </thead>
-            {this.state.menu.map(this.renderTableRow)}
-          </tbody>
+          <thead>
+            <tr>
+              <th>Dish Name </th>
+              <th> Cost </th>
+            </tr>
+          </thead>
+          <tbody>{this.state.menu.map(this.renderTableRow)}</tbody>
         </table>
-        <div id="sidebar-total-price">{formatPrice(this.state.totalPrice)} SEK</div>
+        <div id="sidebar-total-price">
+          {formatPrice(this.state.totalPrice)} SEK
+        </div>
         <div className="col-md-3 col-xs-2"> </div>
         <a
           href="#confirm"

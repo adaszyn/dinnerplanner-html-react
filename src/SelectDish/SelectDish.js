@@ -1,7 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import "./SelectDish.css";
-import Sidebar from "../Sidebar/Sidebar";
-import Dishes from "../Dishes/Dishes";
 import SearchBar from "../SeachBar/SearchBar";
 import { ObserverComponent } from "../Observer/Observer";
 import { DATA_STATUS } from "../data/DinnerModel";
