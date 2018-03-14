@@ -1,4 +1,5 @@
 import api from "../util/api";
+import { values } from "lodash";
 
 export const DATA_STATUS = {
   FINISHED: "FINISHED",
@@ -12,16 +13,14 @@ const httpOptions = {
 };
 
 const DinnerModel = function() {
-  let numberOfGuests = 4;
+  let numberOfGuests = 1;
   let observers = [];
   const searchResults = {
     data: [],
     status: DATA_STATUS.FINISHED
   };
-  const dishes = {
-  
-  };
-  const menu = [];
+  const dishes = {};
+  const menu = {};
 
   this.getSearchResults = () => searchResults;
   this.setSearchResults = (data, status) => {
@@ -29,10 +28,22 @@ const DinnerModel = function() {
     searchResults.status = status;
     notifyObservers();
   };
-  this.addDishToMenu = (item) => {
+  this.addDishToMenu = item => {
     menu[item.id] = item;
-    notifyObservers()
-  }
+    notifyObservers();
+  };
+  this.getMenu = () => {
+    return values(menu);
+  };
+  this.getTotalMenuPricePerServing = () => {
+    return this.getMenu().reduce(
+      (sum, menuItem) => sum + menuItem.pricePerServing,
+      0
+    );
+  };
+  this.getTotalMenuPrice = () => {
+    return numberOfGuests * this.getTotalMenuPricePerServing();
+  };
   this.setNumberOfGuests = function(num) {
     numberOfGuests = num;
     notifyObservers();
@@ -49,17 +60,17 @@ const DinnerModel = function() {
     if (!(id in dishes)) {
       dishes[id] = {
         data,
-        status,
-      }
+        status
+      };
     } else {
       dishes[id].data = data;
       dishes[id].status = status;
     }
     notifyObservers();
-  }
-  this.getDishData = (id) => {
-    return dishes[id] || { data: {}, status: DATA_STATUS.FINISHED }
-  }
+  };
+  this.getDishData = id => {
+    return dishes[id] || { data: {}, status: DATA_STATUS.FINISHED };
+  };
 
   // API Calls
 
@@ -71,7 +82,7 @@ const DinnerModel = function() {
       .catch(handleError);
   };
   this.getDish = function(id) {
-    this.setDishData(id, {}, DATA_STATUS.LOADING);    
+    this.setDishData(id, {}, DATA_STATUS.LOADING);
     return api(`recipes/${id}/information`)
       .then(({ data }) => {
         this.setDishData(id, data, DATA_STATUS.FINISHED);

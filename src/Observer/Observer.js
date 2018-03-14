@@ -2,13 +2,16 @@ import { Component } from "react";
 
 export class ObserverComponent extends Component {
   componentDidMount() {
-    this.props.model.addObserver(this);
+    this.model.addObserver(this);
   }
 
   componentWillUnmount() {
-    this.props.model.removeObserver(this);
+    this.model.removeObserver(this);
   }
   update() {
     throw new Error("update() not implemented");
+  }
+  get model() {
+    return this.props.model;
   }
 }
