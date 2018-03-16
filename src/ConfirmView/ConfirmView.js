@@ -49,18 +49,16 @@ export class ConfirmView extends ObserverComponent {
         </div>
         <div className="cart-summary">
           <div
-            className="cart-summary__sidebar"
+            className="cart-summary__sidebar col-md-3 hidden-xs"
             id="total-price___container"
-            className="col-md-3 hidden-xs"
           />
 
           <div className="cart-summary__items" id="menu-container___div">
             {this.state.menu.map(this.renderDishItemTemplate)}
           </div>
           <div
-            className="cart-summary__price-container cart-summary__sidebar"
+            className="cart-summary__price-container cart-summary__sidebar col-md-3 hidden-xs"
             id="total-price___container"
-            className="col-md-3 hidden-xs"
           >
             Total:
             <br />

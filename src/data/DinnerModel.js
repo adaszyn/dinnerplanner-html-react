@@ -1,5 +1,6 @@
 import api from "../util/api";
 import { values } from "lodash";
+import { DinnerStore } from "./DinnerStore";
 
 export const DATA_STATUS = {
   FINISHED: "FINISHED",
@@ -13,14 +14,13 @@ const httpOptions = {
 };
 
 const DinnerModel = function() {
-  let numberOfGuests = 1;
+  let dinnerStore = new DinnerStore();
   let observers = [];
+  const dishes = {};
   const searchResults = {
     data: [],
     status: DATA_STATUS.FINISHED
   };
-  const dishes = {};
-  const menu = {};
 
   this.getSearchResults = () => searchResults;
   this.setSearchResults = (data, status) => {
@@ -29,11 +29,11 @@ const DinnerModel = function() {
     notifyObservers();
   };
   this.addDishToMenu = item => {
-    menu[item.id] = item;
+    dinnerStore.addItem(item);
     notifyObservers();
   };
   this.getMenu = () => {
-    return values(menu);
+    return values(dinnerStore.menu);
   };
   this.getTotalMenuPricePerServing = () => {
     return this.getMenu().reduce(
@@ -42,17 +42,18 @@ const DinnerModel = function() {
     );
   };
   this.getTotalMenuPrice = () => {
-    return numberOfGuests * this.getTotalMenuPricePerServing();
+    return this.getNumberOfGuests() * this.getTotalMenuPricePerServing();
   };
   this.setNumberOfGuests = function(num) {
-    numberOfGuests = num;
+    dinnerStore.numberOfGuests = num;
     notifyObservers();
   };
 
   this.getNumberOfGuests = function() {
-    return numberOfGuests;
+    return dinnerStore.numberOfGuests;
   };
   this.doesDishExistInMenu = function(id) {
+    const menu = dinnerStore.menu;
     if (typeof menu[id] !== "undefined") return true;
     return false;
   };

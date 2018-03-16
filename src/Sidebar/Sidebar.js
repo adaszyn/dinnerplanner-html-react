@@ -40,6 +40,7 @@ class Sidebar extends ObserverComponent {
             People
             <select
               className="sidebar-dropdown__select"
+              value={this.state.numberOfGuests}
               id="num-of-guests___select"
               onChange={this.onGuestsNumberChange}
             >
