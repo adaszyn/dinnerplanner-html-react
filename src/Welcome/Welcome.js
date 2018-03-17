@@ -7,8 +7,8 @@ class Welcome extends Component {
     return (
         <div id="introView">
             <div className="intro-container">
-                <div class="col-md-3 col-xs-1"/>
-                <div class="col-md-6 col-xs-10">
+                <div className="col-md-3 col-xs-1"/>
+                <div className="col-md-6 col-xs-10">
                     <div>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         Velit egestas dui id ornare arcu odio ut sem nulla. Id aliquet lectus proin nibh nisl condimentum id
@@ -18,7 +18,7 @@ class Welcome extends Component {
                         morbi tincidunt ornare massa eget egestas purus. Vitae et leo duis ut diam.
                     </div>
                     <Link to="/planner">
-                        <button type="button" id="create-new-dinner-button" class="dnp-btn btn btn-primary btn-lg">Create New Dinner</button>
+                        <button type="button" id="create-new-dinner-button" className="dnp-btn btn btn-primary btn-lg">Create New Dinner</button>
                     </Link>
                 </div>
                 <div className="col-md-3 col-xs-1"/>
