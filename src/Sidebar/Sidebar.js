@@ -22,7 +22,7 @@ class Sidebar extends ObserverComponent {
     return (
       <tr className="dish-row" key={`dish-row-${dish.id}`}>
         <td>{dish.title}</td>
-        <td>{formatPrice(dish.pricePerServing)} SEK</td>
+        <td>{formatPrice(dish.pricePerServing * this.state.numberOfGuests)} SEK</td>
       </tr>
     );
   }
@@ -31,6 +31,7 @@ class Sidebar extends ObserverComponent {
   };
 
   render() {
+    var self = this;
     return (
       <div id="sidebarView" className="sidebar">
         <h3 className="sidebar-header"> My Dinner </h3>
@@ -59,7 +60,12 @@ class Sidebar extends ObserverComponent {
               <th> Cost </th>
             </tr>
           </thead>
-          <tbody>{this.state.menu.map(this.renderTableRow)}</tbody>
+          <tbody>{
+            this.state.menu.map(
+              function(dish){
+                return self.renderTableRow(dish, self.state.numberOfGuests)
+              })
+            }</tbody>
         </table>
         <div id="sidebar-total-price">
           {formatPrice(this.state.totalPrice)} SEK
