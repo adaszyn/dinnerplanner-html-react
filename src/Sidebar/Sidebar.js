@@ -63,7 +63,7 @@ class Sidebar extends ObserverComponent {
           <tbody>{
             this.state.menu.map(
               function(dish){
-                return self.renderTableRow(dish, self.state.numberOfGuests)
+                return self.renderTableRow(dish)
               })
             }</tbody>
         </table>
